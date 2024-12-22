@@ -1,0 +1,27 @@
+[
+    {
+        "name": "GatherUp",
+        "logo": "https://i.postimg.cc/GtKQ4fxV/GatherUp.png",
+        "description": "Simplifies review collection and reputation management with feedback automation."
+      },
+      {
+        "name": "BirdEye",
+        "logo": "https://i.postimg.cc/76vXd0Ls/birdeye-logo.png",
+        "description": "Helps businesses enhance customer experiences with reviews, surveys, and reputation management."
+      },
+      {
+        "name": "Feefo",
+        "logo": "https://i.postimg.cc/k5RfTf7R/Feefo.png",
+        "description": "Specializes in collecting verified customer reviews to boost business credibility and insights."
+      },
+      {
+        "name": "Yotpo",
+        "logo": "https://i.postimg.cc/JnbKL0D1/yotpo-logo.png",
+        "description": "An all-in-one eCommerce marketing platform with advanced review collection and customer insights."
+      },
+      {
+        "name": "ReviewFlowz",
+        "logo": "https://i.postimg.cc/90CbF2Zy/reviewflowz.png",
+        "description": "A lightweight, agile review aggregation tool designed to track and display reviews from multiple platforms in one place."
+      }
+]

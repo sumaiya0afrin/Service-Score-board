@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { RiLoginCircleLine } from "react-icons/ri";
 import { GoHome } from "react-icons/go";
 import { MdMiscellaneousServices } from "react-icons/md";
 
 const Navbar = () => {
+  const location = useLocation();
   const links = (
     <>
       <li>
@@ -22,7 +23,11 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className=" absolute top-0 left-0 w-full z-50">
+    <div
+      className={`${
+        location.pathname === "/" ? "absolute" : "none"
+      }  top-0 left-0 w-full z-50`}
+    >
       <div className="max-w-screen-xl mx-auto relative flex items-center">
         <div className="navbar py-4 bg-[#00796B] rounded-lg text-white mt-6">
           <div className="navbar-start w-auto lg:w-1/2">
@@ -79,9 +84,12 @@ const Navbar = () => {
               <RiLoginCircleLine className="text-2xl" />
               Login
             </button>
-            <button className="btn bg-primaryColor border-none join-item hover:bg-gray-900 hover:text-white">
+            <Link
+              to="/register"
+              className="btn bg-primaryColor border-none join-item hover:bg-gray-900 hover:text-white"
+            >
               Register
-            </button>
+            </Link>
           </div>
         </div>
       </div>

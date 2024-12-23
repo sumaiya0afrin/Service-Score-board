@@ -14,7 +14,7 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import auth from "@/firebase/firebase.config";
 
 const Register = () => {
-  const { createUser, setUser } = useContext(AuthContext);
+  const { createUser, setUser, updatedUserProfile } = useContext(AuthContext);
   const provider = new GoogleAuthProvider();
   const notify = () =>
     toast.success("User created successfully!", {
@@ -27,13 +27,17 @@ const Register = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    const { email, password } = data;
-    console.log(email, password);
+    const { email, password, photo, username } = data;
+    console.log(email, password, photo, username);
 
     createUser(email, password)
       .then((result) => {
         const user = result.user;
         setUser(user);
+        updatedUserProfile({
+          displayName: username,
+          photoURL: photo,
+        });
         console.log(user);
         notify();
       })

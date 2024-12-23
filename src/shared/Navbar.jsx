@@ -1,28 +1,66 @@
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
-import { RiLoginCircleLine, RiLogoutCircleLine } from "react-icons/ri";
+import {
+  RiFunctionAddLine,
+  RiLoginCircleLine,
+  RiLogoutCircleLine,
+} from "react-icons/ri";
 import { GoHome } from "react-icons/go";
-import { MdMiscellaneousServices } from "react-icons/md";
+import { MdMiscellaneousServices, MdOutlineReviews } from "react-icons/md";
 import { useContext } from "react";
 import { AuthContext } from "@/authProvider/AuthProvider";
+import { Avatar } from "@/components/ui/avatar";
+import { HStack } from "@chakra-ui/react";
 
 const Navbar = () => {
   const location = useLocation();
   const { user, logOut } = useContext(AuthContext);
+
   const links = (
     <>
-      <li>
-        <Link to="/">
-          <GoHome />
-          Home
-        </Link>
-      </li>
-      <li>
-        <a>
-          <MdMiscellaneousServices />
-          Services
-        </a>
-      </li>
+      {user && user?.email ? (
+        <>
+          <li>
+            <Link to="/">
+              <GoHome />
+              Home
+            </Link>
+          </li>
+          <li>
+            <a>
+              <MdMiscellaneousServices />
+              Services
+            </a>
+          </li>
+          <li>
+            <a>
+              <RiFunctionAddLine />
+              Add Services
+            </a>
+          </li>
+          <li>
+            <a>
+              <MdOutlineReviews />
+              My Reviews
+            </a>
+          </li>
+        </>
+      ) : (
+        <>
+          <li>
+            <Link to="/">
+              <GoHome />
+              Home
+            </Link>
+          </li>
+          <li>
+            <a>
+              <MdMiscellaneousServices />
+              Services
+            </a>
+          </li>
+        </>
+      )}
     </>
   );
 
@@ -58,18 +96,43 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow text-primaryColor"
               >
                 {links}
-                <div className="navbar-end space-x-6 ">
-                  <Link to="/register" className="underline">
-                    Register
-                  </Link>
-                  <a className="btn bg-primaryColor border-none">
-                    <RiLoginCircleLine className="text-2xl" />
-                    Login
-                  </a>
-                </div>
+                {user && user?.email ? (
+                  <div className="navbar-end">
+                    <HStack gap="3">
+                      <Avatar
+                        size="md"
+                        name="Sage"
+                        src={user && user?.photoURL ? user.photoURL : ""}
+                      />
+                    </HStack>
+                    <button
+                      onClick={logOut}
+                      className="btn bg-primaryColor border-none join-item hover:bg-gray-900 hover:text-white"
+                    >
+                      <RiLogoutCircleLine className="text-2xl" />
+                      LogOut
+                    </button>
+                  </div>
+                ) : (
+                  <div className="navbar-end">
+                    <Link
+                      to="/signIn"
+                      className="btn bg-primaryColor border-none join-item hover:bg-gray-900 hover:text-white"
+                    >
+                      <RiLoginCircleLine className="text-2xl" />
+                      Login
+                    </Link>
+                    <Link
+                      to="/register"
+                      className="btn bg-primaryColor border-none join-item hover:bg-gray-900 hover:text-white"
+                    >
+                      Register
+                    </Link>
+                  </div>
+                )}
               </ul>
             </div>
             <ul className="menu menu-horizontal px-1 hidden lg:flex">
@@ -84,7 +147,14 @@ const Navbar = () => {
             </h2>
           </div>
           {user && user?.email ? (
-            <div className="navbar-end hidden lg:flex">
+            <div className="navbar-end space-x-4 hidden lg:flex">
+              <HStack gap="3">
+                <Avatar
+                  size="md"
+                  name="Sage"
+                  src={user && user?.photoURL ? user.photoURL : ""}
+                />
+              </HStack>
               <button
                 onClick={logOut}
                 className="btn bg-primaryColor border-none join-item hover:bg-gray-900 hover:text-white"

@@ -95,10 +95,13 @@ const Navbar = () => {
             </div>
           ) : (
             <div className="navbar-end hidden lg:flex join">
-              <button className="btn bg-primaryColor border-none join-item hover:bg-gray-900 hover:text-white">
+              <Link
+                to="/signIn"
+                className="btn bg-primaryColor border-none join-item hover:bg-gray-900 hover:text-white"
+              >
                 <RiLoginCircleLine className="text-2xl" />
                 Login
-              </button>
+              </Link>
               <Link
                 to="/register"
                 className="btn bg-primaryColor border-none join-item hover:bg-gray-900 hover:text-white"

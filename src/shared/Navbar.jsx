@@ -33,10 +33,10 @@ const Navbar = () => {
             </a>
           </li>
           <li>
-            <a>
+            <Link to="/add-Service">
               <RiFunctionAddLine />
               Add Services
-            </a>
+            </Link>
           </li>
           <li>
             <a>

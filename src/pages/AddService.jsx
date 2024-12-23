@@ -26,11 +26,7 @@ import { AuthContext } from "@/authProvider/AuthProvider";
 const AddService = () => {
   const { user } = useContext(AuthContext);
   const [selectedCategory, setSelectedCategory] = useState("");
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const frameworks = createListCollection({
     items: [

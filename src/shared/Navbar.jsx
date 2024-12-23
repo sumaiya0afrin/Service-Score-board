@@ -1,11 +1,14 @@
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
-import { RiLoginCircleLine } from "react-icons/ri";
+import { RiLoginCircleLine, RiLogoutCircleLine } from "react-icons/ri";
 import { GoHome } from "react-icons/go";
 import { MdMiscellaneousServices } from "react-icons/md";
+import { useContext } from "react";
+import { AuthContext } from "@/authProvider/AuthProvider";
 
 const Navbar = () => {
   const location = useLocation();
+  const { user, logOut } = useContext(AuthContext);
   const links = (
     <>
       <li>
@@ -22,6 +25,7 @@ const Navbar = () => {
       </li>
     </>
   );
+
   return (
     <div
       className={`${
@@ -79,18 +83,30 @@ const Navbar = () => {
               ScoreBoard
             </h2>
           </div>
-          <div className="navbar-end hidden lg:flex join">
-            <button className="btn bg-primaryColor border-none join-item hover:bg-gray-900 hover:text-white">
-              <RiLoginCircleLine className="text-2xl" />
-              Login
-            </button>
-            <Link
-              to="/register"
-              className="btn bg-primaryColor border-none join-item hover:bg-gray-900 hover:text-white"
-            >
-              Register
-            </Link>
-          </div>
+          {user && user?.email ? (
+            <div className="navbar-end hidden lg:flex">
+              <button
+                onClick={logOut}
+                className="btn bg-primaryColor border-none join-item hover:bg-gray-900 hover:text-white"
+              >
+                <RiLogoutCircleLine className="text-2xl" />
+                LogOut
+              </button>
+            </div>
+          ) : (
+            <div className="navbar-end hidden lg:flex join">
+              <button className="btn bg-primaryColor border-none join-item hover:bg-gray-900 hover:text-white">
+                <RiLoginCircleLine className="text-2xl" />
+                Login
+              </button>
+              <Link
+                to="/register"
+                className="btn bg-primaryColor border-none join-item hover:bg-gray-900 hover:text-white"
+              >
+                Register
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>

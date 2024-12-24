@@ -27,10 +27,10 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <a>
+            <Link to="/services">
               <MdMiscellaneousServices />
               Services
-            </a>
+            </Link>
           </li>
           <li>
             <Link to="/add-Service">

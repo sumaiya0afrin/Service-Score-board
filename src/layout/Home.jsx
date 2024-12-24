@@ -1,3 +1,4 @@
+import Category from "@/components/Category";
 import Banner from "../components/Banner";
 import Counter from "../components/Counter";
 import Partner from "../components/Partner";
@@ -7,6 +8,7 @@ const Home = () => {
     <div>
       <Banner />
       <div className="max-w-screen-xl mx-auto">
+        <Category />
         <Partner />
         <Counter />
       </div>

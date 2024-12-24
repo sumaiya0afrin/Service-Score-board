@@ -9,27 +9,19 @@ import { SiGooglemarketingplatform, SiStyledcomponents } from "react-icons/si";
 import { HiOutlinePhotograph } from "react-icons/hi";
 import { BiWebcam } from "react-icons/bi";
 import { IoHomeOutline } from "react-icons/io5";
-import category from "../assets/category.png";
-import category2 from "../assets/category1.png";
-import { motion } from "motion/react";
 const Category = () => {
   return (
-    <div className="mb-28">
-      <div className="space-y-2">
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold">
-          <em>Explore Our Categories</em>
-        </h2>
-        <p className="text-base md:text-lg">
-          Find the Perfect Fit for Your Needs
-        </p>
-      </div>
+    <div className="mb-28 px-4 lg:px-0">
+      <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-8 text-center">
+        <em>Explore Our Categories</em>
+      </h2>
 
-      <div className="grid md:grid-cols-6 mt-8 gap-4">
+      <div className="max-w-4xl mx-auto">
         <Grid
+          className="!block md:!grid"
           templateRows="repeat(3, 1fr)"
           templateColumns="repeat(12, 1fr)"
           gap={4}
-          className="md:col-span-4"
         >
           <GridItem rowSpan={3} colSpan={1}>
             <div className="justify-items-center border border-gray-900 h-full p-3 ">
@@ -87,21 +79,6 @@ const Category = () => {
             </div>
           </GridItem>
         </Grid>
-
-        <div className="md:col-span-2">
-          <motion.img
-            src={category}
-            animate={{ y: [0, 90, 0] }}
-            transition={{ duration: 15, repeat: Infinity }}
-            alt=""
-            className="max-w-sm w-36"
-          />
-          <img
-            src={category2}
-            alt=""
-            className="max-w-sm w-56 z-10 justify-self-center bg-gray-900 rounded-2xl"
-          />
-        </div>
       </div>
     </div>
   );

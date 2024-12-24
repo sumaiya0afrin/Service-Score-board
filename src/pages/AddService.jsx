@@ -23,27 +23,73 @@ import {
 import { HiUpload } from "react-icons/hi";
 import { useContext, useState } from "react";
 import { AuthContext } from "@/authProvider/AuthProvider";
+import { toast } from "react-toastify";
 const AddService = () => {
   const { user } = useContext(AuthContext);
   const [selectedCategory, setSelectedCategory] = useState("");
   const { register, handleSubmit } = useForm();
 
+  const notify = () => toast.success("Service Added successfully!", {});
+
   const frameworks = createListCollection({
     items: [
       { label: "Health & Wellness", value: "Health & Wellness" },
       { label: "Technology & IT", value: "Technology & IT" },
+      { label: "Marketing", value: "Marketing" },
+      { label: "Photography", value: "Photography" },
+      { label: "Hosting Services", value: "Hosting Services" },
+      { label: "Home Services", value: "Home Services" },
       { label: "Education & Learning", value: "Education & Learning" },
       { label: "Beauty & Grooming", value: "Beauty & Grooming" },
-      { label: "Food & Catering", value: "Food & Catering" },
+
       { label: "Travel & Tourism", value: "Travel & Tourism" },
     ],
   });
 
   const handleAddService = (data) => {
     const submissionDate = new Date().toISOString();
-    const { image, title, company, website, price, desc } = data;
-    console.log(image, title, company, website, price, desc, selectedCategory);
-    console.log(submissionDate, user);
+    const { title, company, website, price, desc } = data;
+
+    const category = selectedCategory.value[0];
+    const image = data.image[0].name;
+    const userMail = user.email;
+    console.log(
+      image,
+      title,
+      company,
+      website,
+      price,
+      desc,
+      category,
+      userMail
+    );
+
+    const newService = {
+      image,
+      title,
+      company,
+      website,
+      price,
+      desc,
+      category,
+      submissionDate,
+      userMail,
+    };
+
+    //send data to server
+    fetch("http://localhost:5000/service", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newService),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          notify();
+        }
+      });
   };
   return (
     <div>

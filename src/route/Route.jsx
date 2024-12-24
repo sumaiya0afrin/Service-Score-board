@@ -5,6 +5,7 @@ import Home from "../layout/Home";
 import Register from "@/pages/Register";
 import SignIn from "@/pages/SignIn";
 import AddService from "@/pages/AddService";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -27,7 +28,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/add-Service",
-    element: <AddService />,
+    element: (
+      <PrivateRoute>
+        <AddService />
+      </PrivateRoute>
+    ),
   },
 ]);
 

@@ -11,6 +11,7 @@ import { useContext } from "react";
 import { AuthContext } from "@/authProvider/AuthProvider";
 import { Avatar } from "@/components/ui/avatar";
 import { HStack } from "@chakra-ui/react";
+import { GrServices } from "react-icons/gr";
 
 const Navbar = () => {
   const location = useLocation();
@@ -38,6 +39,7 @@ const Navbar = () => {
               Add Services
             </Link>
           </li>
+
           <li>
             <a>
               <MdOutlineReviews />
@@ -101,6 +103,15 @@ const Navbar = () => {
                 {links}
                 {user && user?.email ? (
                   <div className="navbar-end">
+                    <ul className="menu menu-horizontal">
+                      <li>
+                        <Link to="/my-ervice">
+                          <GrServices />
+                          My Services
+                        </Link>
+                      </li>
+                    </ul>
+
                     <HStack gap="3">
                       <Avatar
                         size="md"
@@ -148,6 +159,14 @@ const Navbar = () => {
           </Link>
           {user && user?.email ? (
             <div className="navbar-end space-x-4 hidden lg:flex">
+              <ul className="menu menu-horizontal px-1 hidden lg:flex">
+                <li>
+                  <Link to="/my-service">
+                    <GrServices />
+                    My Services
+                  </Link>
+                </li>
+              </ul>
               <HStack gap="3">
                 <Avatar
                   size="md"

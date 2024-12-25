@@ -11,8 +11,8 @@ const Home = () => {
       <div className="max-w-screen-xl mx-auto">
         <Category />
         <Feature />
-        <Partner />
         <Counter />
+        <Partner />
       </div>
     </div>
   );

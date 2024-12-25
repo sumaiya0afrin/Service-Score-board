@@ -25,7 +25,7 @@ const ServiceDetails = () => {
   const service = useLoaderData();
   const [reviews, setReviews] = useState([]);
 
-  const notify = () => toast.success("Review Added successfully!", {});
+  const notify = () => toast.success("Review Added successfully!");
   const {
     handleSubmit,
     control,
@@ -43,9 +43,21 @@ const ServiceDetails = () => {
   const id = service._id;
   const userName = user.displayName;
   const userPhoto = user.photoURL;
+
+  const filteredReviews = reviews.filter((review) => review.id === id);
+
+  // Helper function to format the date
+  const formatDate = (isoDate) => {
+    const date = new Date(isoDate);
+    return date.toLocaleDateString(undefined, {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
+
   const handleAddReview = (data) => {
     const submissionDate = new Date().toISOString();
-
     const { rating, review } = data;
     const id = service._id;
     const userMail = user.email;
@@ -82,24 +94,26 @@ const ServiceDetails = () => {
         if (data.insertedId) {
           notify();
         }
+      })
+      .catch((err) => {
+        const notify = () => toast.success(`${err}`);
+        notify();
       });
   };
 
   return (
     <div>
       <Navbar />
-      <div className="max-w-screen-xl mx-auto space-y-3 mt-8">
+      <div className="max-w-screen-xl mx-auto space-y-3 mt-8 px-4 md:px-0">
         <Card.Root
-          flexDirection="row"
           overflow="hidden"
-          maxW="2xl"
-          className="bg-gray-900 justify-self-center"
+          className="bg-gray-900 justify-self-center max-w-2xl flex-col md:flex-row"
         >
           <Image
             objectFit="cover"
-            maxW="200px"
             src={service.image}
-            alt="Caffe Latte"
+            alt={service.title}
+            className="md:max-w-[200px]"
           />
           <Box>
             <Card.Body>
@@ -112,11 +126,12 @@ const ServiceDetails = () => {
           </Box>
         </Card.Root>
 
-        <Card.Root width="2xl" className=" bg-gray-900 justify-self-center">
+        <Card.Root className=" bg-gray-900 justify-self-center max-w-2xl">
           <Card.Body>
             <form onSubmit={handleSubmit(handleAddReview)}>
-              <HStack gap="10" width="full">
+              <HStack gap="10" width="full" className="!flex-col md:!flex-row">
                 <Field
+                  required
                   label="Rating"
                   invalid={!!errors.rating}
                   errorText={errors.rating?.message}
@@ -133,7 +148,7 @@ const ServiceDetails = () => {
                     )}
                   />
                 </Field>
-                <Field label="Review">
+                <Field label="Review" required>
                   <Textarea
                     placeholder="Start typing..."
                     variant="outline"
@@ -150,47 +165,51 @@ const ServiceDetails = () => {
                 Submit
               </Button>
             </form>
+
+            <h2 className="mt-4">Total Reviews: {filteredReviews.length}</h2>
+
+            {reviews.length > 0 ? (
+              reviews
+                .filter((review) => review.id === id) // Filter reviews by serviceId
+                .map((review) => (
+                  <Card.Root
+                    className="bg-gray-900 justify-self-center"
+                    key={review._id}
+                  >
+                    <Card.Body>
+                      <HStack mb="6" gap="3">
+                        <Avatar
+                          src={review.userPhoto}
+                          name={review.userMail} // Assuming userMail is the reviewer name
+                        />
+                        <Stack gap="0">
+                          <Text
+                            fontWeight="semibold"
+                            textStyle="sm"
+                            className="capitalize"
+                          >
+                            {review.userName}
+                          </Text>
+                          <Rating
+                            colorPalette="orange"
+                            readOnly
+                            size="xs"
+                            value={review.rating}
+                          />
+                          <Text color="gray" textStyle="xs">
+                            {formatDate(review.submissionDate)}
+                          </Text>
+                        </Stack>
+                      </HStack>
+                      <Card.Description>{review.review}</Card.Description>
+                    </Card.Body>
+                  </Card.Root>
+                ))
+            ) : (
+              <Text>No reviews yet.</Text>
+            )}
           </Card.Body>
         </Card.Root>
-
-        {reviews.length > 0 ? (
-          reviews
-            .filter((review) => review.id === id) // Filter reviews by serviceId
-            .map((review) => (
-              <Card.Root
-                width="2xl"
-                className="bg-gray-900 justify-self-center"
-                key={review._id}
-              >
-                <Card.Body>
-                  <HStack mb="6" gap="3">
-                    <Avatar
-                      src={review.userPhoto}
-                      name={review.userMail} // Assuming userMail is the reviewer name
-                    />
-                    <Stack gap="0">
-                      <Text
-                        fontWeight="semibold"
-                        textStyle="sm"
-                        className="capitalize"
-                      >
-                        {review.userName}
-                      </Text>
-                      <Rating
-                        colorPalette="orange"
-                        readOnly
-                        size="xs"
-                        value={review.rating}
-                      />
-                    </Stack>
-                  </HStack>
-                  <Card.Description>{review.review}</Card.Description>
-                </Card.Body>
-              </Card.Root>
-            ))
-        ) : (
-          <Text>No reviews yet.</Text>
-        )}
       </div>
       <Footer />
     </div>

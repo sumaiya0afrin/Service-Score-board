@@ -15,12 +15,6 @@ import { createListCollection } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import Navbar from "@/shared/Navbar";
 import Footer from "@/shared/Footer";
-import {
-  FileUploadList,
-  FileUploadRoot,
-  FileUploadTrigger,
-} from "@/components/ui/file-upload";
-import { HiUpload } from "react-icons/hi";
 import { useContext, useState } from "react";
 import { AuthContext } from "@/authProvider/AuthProvider";
 import { toast } from "react-toastify";
@@ -48,10 +42,10 @@ const AddService = () => {
 
   const handleAddService = (data) => {
     const submissionDate = new Date().toISOString();
-    const { title, company, website, price, desc } = data;
+    const { image, title, company, website, price, desc } = data;
 
     const category = selectedCategory.value[0];
-    const image = data.image[0].name;
+
     const userMail = user.email;
     console.log(
       image,
@@ -111,17 +105,11 @@ const AddService = () => {
           <Stack gap="4" align="flex-start">
             <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-3">
               <Field label="Service Image" required>
-                <FileUploadRoot
-                  className="border border-primaryColor px-2 rounded-md"
+                <Input
+                  type="text"
+                  className="border border-primaryColor px-2"
                   {...register("image")}
-                >
-                  <FileUploadTrigger asChild>
-                    <Button variant="outline" className="bg-white">
-                      <HiUpload /> Upload file
-                    </Button>
-                  </FileUploadTrigger>
-                  <FileUploadList />
-                </FileUploadRoot>
+                />
               </Field>
 
               <Field label="Service Title" required>

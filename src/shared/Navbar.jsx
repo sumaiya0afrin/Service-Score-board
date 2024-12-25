@@ -54,10 +54,10 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <a>
+            <Link to="/services">
               <MdMiscellaneousServices />
               Services
-            </a>
+            </Link>
           </li>
         </>
       )}
@@ -139,13 +139,13 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <div className="navbar-center space-x-2">
+          <Link to="/" className="navbar-center space-x-2">
             <img src={logo} alt="" className="w-16" />
             <h2 className="text-xl md::text-2xl">
               Service <br />
               ScoreBoard
             </h2>
-          </div>
+          </Link>
           {user && user?.email ? (
             <div className="navbar-end space-x-4 hidden lg:flex">
               <HStack gap="3">

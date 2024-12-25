@@ -2,7 +2,7 @@ import { Button, Input, Stack } from "@chakra-ui/react";
 import { Field } from "@/components/ui/field";
 import { useForm } from "react-hook-form";
 import Navbar from "@/shared/Navbar";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Footer from "@/shared/Footer";
 import { FaGoogle } from "react-icons/fa";
 import signup from "../assets/signup.png";
@@ -16,10 +16,9 @@ import auth from "@/firebase/firebase.config";
 const Register = () => {
   const { createUser, setUser, updatedUserProfile } = useContext(AuthContext);
   const provider = new GoogleAuthProvider();
-  const notify = () =>
-    toast.success("User created successfully!", {
-      autoClose: false,
-    });
+  const location = useLocation();
+  const navigate = useNavigate();
+  const notify = () => toast.success("User created successfully!");
   const {
     register,
     handleSubmit,
@@ -39,6 +38,7 @@ const Register = () => {
           photoURL: photo,
         });
         console.log(user);
+        navigate(location?.state ? location.state : "/");
         notify();
       })
       .catch((error) => {

@@ -1,7 +1,7 @@
 import { Button, Input, Stack } from "@chakra-ui/react";
 import { Field } from "@/components/ui/field";
 import { FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import signup from "../assets/signup.png";
 import Navbar from "@/shared/Navbar";
 import Footer from "@/shared/Footer";
@@ -16,10 +16,10 @@ const SignIn = () => {
   const [error, setError] = useState("");
   const { SignIn, setUser } = useContext(AuthContext);
   const provider = new GoogleAuthProvider();
-  const notify = () =>
-    toast.success("User Signed In successfully!", {
-      autoClose: false,
-    });
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const notify = () => toast.success("User Signed In successfully!");
   const {
     register,
     handleSubmit,
@@ -35,6 +35,7 @@ const SignIn = () => {
         const user = result.user;
         setUser(user);
         console.log(user);
+        navigate(location?.state ? location.state : "/");
         notify();
       })
       .catch((error) => {

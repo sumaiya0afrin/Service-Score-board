@@ -10,6 +10,7 @@ import Services from "@/pages/Services";
 import ServiceDetails from "@/pages/ServiceDetails";
 import MyServices from "@/pages/MyServices";
 import MyReview from "@/pages/MyReview";
+import Error from "@/components/Error";
 
 const router = createBrowserRouter([
   {
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     loader: ({ params }) => fetch(`http://localhost:5000/service/${params.id}`),
+  },
+  {
+    path: "*",
+    element: <Error />,
   },
 ]);
 

@@ -8,6 +8,7 @@ import {
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import axios from "axios";
 
 export const AuthContext = createContext();
 
@@ -47,7 +48,30 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const observer = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      setLoading(false);
+
+      if (currentUser?.email) {
+        const user = { email: currentUser.email };
+
+        axios
+          .post("http://localhost:5000/token", user, { withCredentials: true })
+          .then((res) => {
+            console.log(res.data);
+            setLoading(false);
+          });
+      } else {
+        axios
+          .post(
+            "http://localhost:5000/logout",
+            {},
+            {
+              withCredentials: true,
+            }
+          )
+          .then((res) => {
+            console.log("logOut", res.data);
+            setLoading(false);
+          });
+      }
     });
     return () => {
       observer();

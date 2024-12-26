@@ -1,5 +1,5 @@
-import { useLoaderData } from "react-router-dom";
-import { Button, Card, Image, Text } from "@chakra-ui/react";
+import { Link, useLoaderData } from "react-router-dom";
+import { Card, Image, Text } from "@chakra-ui/react";
 const Feature = () => {
   const services = useLoaderData();
   return (
@@ -39,9 +39,13 @@ const Feature = () => {
               </Text>
             </Card.Body>
             <Card.Footer gap="2">
-              <Button variant="solid" className="border border-dashed w-full">
+              <Link
+                to={`/service-details/${service._id}`}
+                variant="solid"
+                className="btn w-full bg-transparent border-primaryColor text-primaryColor border-dashed uppercase hover:bg-gray-900 hover:text-white"
+              >
                 See Details
-              </Button>
+              </Link>
             </Card.Footer>
           </Card.Root>
         ))}

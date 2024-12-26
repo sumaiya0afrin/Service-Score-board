@@ -29,6 +29,11 @@ const Register = () => {
     const { email, password, photo, username } = data;
     console.log(email, password, photo, username);
 
+    const newUser = {
+      Username: username,
+      PhotoURL: photo,
+    };
+
     createUser(email, password)
       .then((result) => {
         const user = result.user;
@@ -38,8 +43,22 @@ const Register = () => {
           photoURL: photo,
         });
         console.log(user);
+
         navigate(location?.state ? location.state : "/");
-        notify();
+        //send data to server
+        fetch("http://localhost:5000/user", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              notify();
+            }
+          });
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -52,6 +71,7 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        navigate(location?.state ? location.state : "/");
         notify();
       })
       .catch((error) => {

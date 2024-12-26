@@ -1,12 +1,25 @@
 import Footer from "@/shared/Footer";
 import Navbar from "@/shared/Navbar";
 import { Card, Image, Text } from "@chakra-ui/react";
+import { useState } from "react";
 
 import { Link, useLoaderData } from "react-router-dom";
 
 const Services = () => {
   const services = useLoaderData();
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
+  // Get unique categories from services
+  const categories = [
+    "All",
+    ...new Set(services.map((service) => service.category)),
+  ];
+
+  // Filter services based on selected category
+  const filteredServices =
+    selectedCategory === "All"
+      ? services
+      : services.filter((service) => service.category === selectedCategory);
   return (
     <div>
       <Navbar></Navbar>
@@ -20,8 +33,24 @@ const Services = () => {
           </p>
         </div>
 
+        {/* Dropdown for selecting category */}
+        <div className="flex justify-end mb-6 text-white ">
+          <select
+            className="p-2 border rounded bg-gray-900"
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+          >
+            {categories.map((category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Display filtered services */}
         <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-4">
-          {services.map((service) => (
+          {filteredServices.map((service) => (
             <Card.Root
               key={service._id}
               maxW="sm"
@@ -57,6 +86,13 @@ const Services = () => {
             </Card.Root>
           ))}
         </div>
+
+        {/* Message if no services found */}
+        {filteredServices.length === 0 && (
+          <p className="text-center text-lg mt-6">
+            No services found for this category.
+          </p>
+        )}
       </div>
 
       <Footer />

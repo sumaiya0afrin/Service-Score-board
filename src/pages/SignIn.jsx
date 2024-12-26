@@ -51,7 +51,7 @@ const SignIn = () => {
         const user = result.user;
         setUser(user);
         console.log(user);
-        notify();
+        navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
         const errorMessage = error.message;

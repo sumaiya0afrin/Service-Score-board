@@ -41,10 +41,10 @@ const Navbar = () => {
           </li>
 
           <li>
-            <a>
+            <Link to="/my-review">
               <MdOutlineReviews />
               My Reviews
-            </a>
+            </Link>
           </li>
         </>
       ) : (

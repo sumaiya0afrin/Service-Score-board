@@ -11,7 +11,7 @@ const Partner = () => {
   }, []);
 
   return (
-    <div className="space-y-12 mt-12">
+    <div className="space-y-12 mt-12 md:mt-20">
       <div className="flex flex-col items-center justify-center space-y-3">
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold">
           <em>Our Trusted Partners</em>

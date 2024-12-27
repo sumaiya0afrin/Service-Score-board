@@ -37,16 +37,16 @@ const Counter = () => {
       .catch((error) => console.error("Error fetching service count:", error));
   }, []);
   return (
-    <div className="mt-12 md:mt-28">
+    <div className="mt-12 md:mt-28 bg-gray-900 py-8">
       <div className="grid grid-cols-2 md:grid-cols-3 justify-center items-center gap-4">
         <CountUp start={0} end={userCount} delay={0}>
           {({ countUpRef }) => (
             <div className="justify-items-center">
               <FaUsers className="text-4xl md:text-5xl text-primaryColor" />
-              <h4 className="uppercase text-gray-900 text-xl md:text-3xl font-medium">
+              <h4 className="uppercase text-white text-xl md:text-3xl font-medium">
                 users
               </h4>
-              <span ref={countUpRef} className="md:text-2xl" />
+              <span ref={countUpRef} className="md:text-2xl text-white" />
             </div>
           )}
         </CountUp>
@@ -55,10 +55,10 @@ const Counter = () => {
           {({ countUpRef }) => (
             <div className="justify-items-center">
               <MdReviews className="text-4xl md:text-5xl text-primaryColor" />
-              <h4 className="uppercase text-gray-900 text-xl md:text-3xl font-medium">
+              <h4 className="uppercase text-white text-xl md:text-3xl font-medium">
                 reviews
               </h4>
-              <span ref={countUpRef} className="md:text-2xl" />
+              <span ref={countUpRef} className="md:text-2xl text-white" />
             </div>
           )}
         </CountUp>
@@ -67,10 +67,10 @@ const Counter = () => {
           {({ countUpRef }) => (
             <div className="justify-items-center col-span-2 md:col-span-1">
               <GrServices className="text-4xl md:text-5xl text-primaryColor" />
-              <h4 className="uppercase text-gray-900 text-xl md:text-3xl font-medium">
+              <h4 className="uppercase text-white text-xl md:text-3xl font-medium">
                 Services
               </h4>
-              <span ref={countUpRef} className="md:text-2xl" />
+              <span ref={countUpRef} className="md:text-2xl text-white" />
             </div>
           )}
         </CountUp>

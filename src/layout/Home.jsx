@@ -3,6 +3,7 @@ import Banner from "../components/Banner";
 import Counter from "../components/Counter";
 import Partner from "../components/Partner";
 import Feature from "@/components/Feature";
+import TopReviews from "@/components/TopReviews";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
         <Category />
         <Feature />
         <Counter />
+        <TopReviews />
         <Partner />
       </div>
     </div>

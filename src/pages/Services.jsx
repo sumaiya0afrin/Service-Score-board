@@ -1,11 +1,11 @@
 import { Card, Image, Text } from "@chakra-ui/react";
 import { useState } from "react";
-
 import { Link, useLoaderData } from "react-router-dom";
 
 const Services = () => {
   const services = useLoaderData();
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [searchTerm, setSearchTerm] = useState("");
 
   // Get unique categories from services
   const categories = [
@@ -13,11 +13,19 @@ const Services = () => {
     ...new Set(services.map((service) => service.category)),
   ];
 
-  // Filter services based on selected category
-  const filteredServices =
-    selectedCategory === "All"
-      ? services
-      : services.filter((service) => service.category === selectedCategory);
+  // Filter services based on selected category and search term
+  const filteredServices = services.filter((service) => {
+    const matchesCategory =
+      selectedCategory === "All" || service.category === selectedCategory;
+    const matchesSearch =
+      service.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      service.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (service.company &&
+        service.company.toLowerCase().includes(searchTerm.toLowerCase()));
+
+    return matchesCategory && matchesSearch;
+  });
+
   return (
     <div>
       <div className="max-w-screen-xl mx-auto px-4 lg:px-0 mt-12">
@@ -30,10 +38,17 @@ const Services = () => {
           </p>
         </div>
 
-        {/* Dropdown for selecting category */}
-        <div className="flex justify-end mb-6 text-white ">
+        {/* Search bar and dropdown for selecting category */}
+        <div className="flex mb-6 lg:w-96 justify-self-end">
+          <input
+            type="text"
+            placeholder="Search services..."
+            className="p-2 border rounded w-2/3 bg-gray-900 text-white"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
           <select
-            className="p-2 border rounded bg-gray-900"
+            className="p-2 border rounded bg-gray-900 text-white"
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
           >
@@ -54,10 +69,7 @@ const Services = () => {
               overflow="hidden"
               className="bg-gray-900"
             >
-              <Image
-                src={service.image}
-                alt="Green double couch with wooden legs"
-              />
+              <Image src={service.image} alt={service.title} />
               <Card.Body gap="2">
                 <Card.Title>{service.title}</Card.Title>
                 <Card.Description>{service.desc}</Card.Description>
@@ -70,6 +82,7 @@ const Services = () => {
                   ${service.price}
                 </Text>
                 <p className="text-sm">Category: {service.category}</p>
+                <p className="text-sm">Company: {service.company}</p>
               </Card.Body>
               <Card.Footer gap="2">
                 <Link
@@ -87,7 +100,7 @@ const Services = () => {
         {/* Message if no services found */}
         {filteredServices.length === 0 && (
           <p className="text-center text-lg mt-6">
-            No services found for this category.
+            No services found for this search or category.
           </p>
         )}
       </div>

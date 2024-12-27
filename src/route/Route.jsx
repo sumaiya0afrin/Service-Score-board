@@ -22,56 +22,58 @@ const router = createBrowserRouter([
         element: <Home />,
         loader: () => fetch("http://localhost:5000/feature-service"),
       },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+      {
+        path: "/signIn",
+        element: <SignIn />,
+      },
+      {
+        path: "/services",
+        element: <Services />,
+        loader: () => fetch("http://localhost:5000/service"),
+      },
+      {
+        path: "/my-service",
+        element: (
+          <PrivateRoute>
+            <MyServices />
+          </PrivateRoute>
+        ),
+        loader: () => fetch("http://localhost:5000/service"),
+      },
+      {
+        path: "/add-Service",
+        element: (
+          <PrivateRoute>
+            <AddService />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-review",
+        element: (
+          <PrivateRoute>
+            <MyReview />
+          </PrivateRoute>
+        ),
+        loader: () => fetch("http://localhost:5000/review"),
+      },
+      {
+        path: "/service-details/:id",
+        element: (
+          <PrivateRoute>
+            <ServiceDetails />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/service/${params.id}`),
+      },
     ],
   },
-  {
-    path: "/register",
-    element: <Register />,
-  },
-  {
-    path: "/signIn",
-    element: <SignIn />,
-  },
-  {
-    path: "/services",
-    element: <Services />,
-    loader: () => fetch("http://localhost:5000/service"),
-  },
-  {
-    path: "/my-service",
-    element: (
-      <PrivateRoute>
-        <MyServices />
-      </PrivateRoute>
-    ),
-    loader: () => fetch("http://localhost:5000/service"),
-  },
-  {
-    path: "/add-Service",
-    element: (
-      <PrivateRoute>
-        <AddService />
-      </PrivateRoute>
-    ),
-  },
-  {
-    path: "/my-review",
-    element: (
-      <PrivateRoute>
-        <MyReview />
-      </PrivateRoute>
-    ),
-    loader: () => fetch("http://localhost:5000/review"),
-  },
-  {
-    path: "/service-details/:id",
-    element: (
-      <PrivateRoute>
-        <ServiceDetails />
-      </PrivateRoute>
-    ),
-    loader: ({ params }) => fetch(`http://localhost:5000/service/${params.id}`),
-  },
+
   {
     path: "*",
     element: <Error />,

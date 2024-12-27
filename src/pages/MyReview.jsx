@@ -1,7 +1,6 @@
 import { AuthContext } from "@/authProvider/AuthProvider";
 import { Rating } from "@/components/ui/rating";
-import Footer from "@/shared/Footer";
-import Navbar from "@/shared/Navbar";
+
 import { Card, HStack, Stack, Text, Textarea } from "@chakra-ui/react";
 import { useContext, useState, useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -120,7 +119,6 @@ const MyReview = () => {
   };
   return (
     <div>
-      <Navbar />
       <div className="max-w-screen-xl mx-auto mt-12 px-4 md:px-0">
         <h3 className="text-2xl md:text-3xl text-primaryColor font-semibold text-center">
           My Reviews
@@ -179,7 +177,6 @@ const MyReview = () => {
           </Card.Body>
         </Card.Root>
       </div>
-      <Footer />
 
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50">

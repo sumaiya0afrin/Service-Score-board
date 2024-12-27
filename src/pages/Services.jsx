@@ -1,5 +1,3 @@
-import Footer from "@/shared/Footer";
-import Navbar from "@/shared/Navbar";
 import { Card, Image, Text } from "@chakra-ui/react";
 import { useState } from "react";
 
@@ -22,7 +20,6 @@ const Services = () => {
       : services.filter((service) => service.category === selectedCategory);
   return (
     <div>
-      <Navbar></Navbar>
       <div className="max-w-screen-xl mx-auto px-4 lg:px-0 mt-12">
         <div className="flex flex-col items-center mb-8">
           <h3 className="text-2xl md:text-3xl lg:text-4xl font-semibold">
@@ -94,8 +91,6 @@ const Services = () => {
           </p>
         )}
       </div>
-
-      <Footer />
     </div>
   );
 };

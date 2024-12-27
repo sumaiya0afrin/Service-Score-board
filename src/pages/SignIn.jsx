@@ -3,8 +3,7 @@ import { Field } from "@/components/ui/field";
 import { FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import signup from "../assets/signup.png";
-import Navbar from "@/shared/Navbar";
-import Footer from "@/shared/Footer";
+
 import { useForm } from "react-hook-form";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useContext, useState } from "react";
@@ -61,7 +60,6 @@ const SignIn = () => {
 
   return (
     <div>
-      <Navbar />
       <div className="max-w-screen-xl mx-auto mt-12 px-4 md:px-0">
         <div className="flex flex-col lg:flex-row items-center justify-center md:w-3/4 mx-auto">
           <img src={signup} alt="" className="md:max-w-sm" />
@@ -130,7 +128,6 @@ const SignIn = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

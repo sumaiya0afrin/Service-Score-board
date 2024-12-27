@@ -13,8 +13,7 @@ import {
 import { Field } from "@/components/ui/field";
 import { createListCollection } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
-import Navbar from "@/shared/Navbar";
-import Footer from "@/shared/Footer";
+
 import { useContext, useState } from "react";
 import { AuthContext } from "@/authProvider/AuthProvider";
 import { toast } from "react-toastify";
@@ -87,7 +86,6 @@ const AddService = () => {
   };
   return (
     <div>
-      <Navbar />
       <div className="max-w-screen-xl mx-auto mt-12 px-4 md:px-0">
         <div className="flex flex-col items-center mb-10">
           <h3 className="text-2xl md:text-3xl text-primaryColor font-semibold">
@@ -184,8 +182,6 @@ const AddService = () => {
           </Stack>
         </form>
       </div>
-
-      <Footer />
     </div>
   );
 };

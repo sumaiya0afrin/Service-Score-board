@@ -1,9 +1,7 @@
 import { Button, Input, Stack } from "@chakra-ui/react";
 import { Field } from "@/components/ui/field";
 import { useForm } from "react-hook-form";
-import Navbar from "@/shared/Navbar";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import Footer from "@/shared/Footer";
 import { FaGoogle } from "react-icons/fa";
 import signup from "../assets/signup.png";
 import { useContext } from "react";
@@ -81,7 +79,6 @@ const Register = () => {
   };
   return (
     <div>
-      <Navbar />
       <div className="max-w-screen-xl mx-auto mt-12 px-4 md:px-0">
         <div className="flex flex-col lg:flex-row items-center justify-center md:w-3/4 mx-auto">
           <img src={signup} alt="" className="md:max-w-sm" />
@@ -183,7 +180,6 @@ const Register = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

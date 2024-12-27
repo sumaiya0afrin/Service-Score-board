@@ -3,8 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useLoaderData } from "react-router-dom";
 import { Textarea } from "@chakra-ui/react";
 import { Field } from "@/components/ui/field";
-import Navbar from "@/shared/Navbar";
-import Footer from "@/shared/Footer";
+
 import { Avatar } from "@/components/ui/avatar";
 
 import { Rating } from "@/components/ui/rating";
@@ -103,7 +102,6 @@ const ServiceDetails = () => {
 
   return (
     <div>
-      <Navbar />
       <div className="max-w-screen-xl mx-auto space-y-3 mt-8 px-4 md:px-0">
         <Card.Root
           overflow="hidden"
@@ -211,7 +209,6 @@ const ServiceDetails = () => {
           </Card.Body>
         </Card.Root>
       </div>
-      <Footer />
     </div>
   );
 };

@@ -1,7 +1,6 @@
 import { AuthContext } from "@/authProvider/AuthProvider";
 import { InputGroup } from "@/components/ui/input-group";
-import Footer from "@/shared/Footer";
-import Navbar from "@/shared/Navbar";
+
 import { HStack, Input, Stack, Table } from "@chakra-ui/react";
 import { useContext, useEffect, useState } from "react";
 
@@ -131,7 +130,6 @@ const MyServices = () => {
 
   return (
     <div>
-      <Navbar />
       <div className="max-w-screen-lg mx-auto space-y-5 mt-12 px-4 lg:px-0">
         <HStack gap="10" className=" justify-self-end md:max-w-sm">
           <InputGroup
@@ -211,8 +209,6 @@ const MyServices = () => {
           </div>
         </Stack>
       </div>
-
-      <Footer />
 
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50">

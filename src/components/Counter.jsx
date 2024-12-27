@@ -10,17 +10,16 @@ const Counter = () => {
   const [reviewCount, setReviewCount] = useState(0);
 
   useEffect(() => {
-    fetch("http://localhost:5000/service")
+    fetch("https://service-score-board-server.vercel.app/service")
       .then((response) => response.json())
       .then((data) => {
         setServiceCount(data.length || 0);
-        console.log(serviceCount);
       })
       .catch((error) => console.error("Error fetching service count:", error));
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:5000/review")
+    fetch("https://service-score-board-server.vercel.app/review")
       .then((response) => response.json())
       .then((data) => {
         setReviewCount(data.length || 0);
@@ -29,7 +28,7 @@ const Counter = () => {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:5000/user")
+    fetch("https://service-score-board-server.vercel.app/user")
       .then((response) => response.json())
       .then((data) => {
         setUserCount(data.length || 0);

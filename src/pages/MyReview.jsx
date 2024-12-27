@@ -22,7 +22,9 @@ const MyReview = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const res = await fetch("http://localhost:5000/service");
+        const res = await fetch(
+          "https://service-score-board-server.vercel.app/service"
+        );
         const services = await res.json();
         const map = services.reduce((acc, service) => {
           acc[service._id] = service.title;
@@ -42,7 +44,6 @@ const MyReview = () => {
   );
 
   const handleDelete = (id) => {
-    console.log(id);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -54,7 +55,7 @@ const MyReview = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         //send data to server
-        fetch(`http://localhost:5000/review/${id}`, {
+        fetch(`https://service-score-board-server.vercel.app/review/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -77,14 +78,12 @@ const MyReview = () => {
   };
 
   const handleUpdateClick = (review) => {
-    console.log(review);
     setSelectedReview(review);
     setIsModalOpen(true); // Open the modal
     reset({
       rating: review.rating,
       review: review.review,
     });
-    console.log(review);
   };
 
   const handleUpdateSubmit = (data, e) => {
@@ -97,13 +96,16 @@ const MyReview = () => {
     };
 
     // Send updated review data
-    fetch(`http://localhost:5000/review/${selectedReview._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updatedReview),
-    })
+    fetch(
+      `https://service-score-board-server.vercel.app/review/${selectedReview._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedReview),
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         if (data.message === "Review updated successfully") {
@@ -128,7 +130,7 @@ const MyReview = () => {
             {userReviews.length > 0 ? (
               userReviews.map((review) => (
                 <Card.Root
-                  className="bg-gray-900 justify-self-center"
+                  className="bg-gray-900 justify-self-center text-white"
                   key={review._id}
                 >
                   <Card.Body>

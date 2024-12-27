@@ -46,16 +46,6 @@ const AddService = () => {
     const category = selectedCategory.value[0];
 
     const userMail = user.email;
-    console.log(
-      image,
-      title,
-      company,
-      website,
-      price,
-      desc,
-      category,
-      userMail
-    );
 
     const newService = {
       image,
@@ -70,7 +60,7 @@ const AddService = () => {
     };
 
     //send data to server
-    fetch("http://localhost:5000/service", {
+    fetch("https://service-score-board-server.vercel.app/service", {
       method: "POST",
       headers: {
         "content-type": "application/json",

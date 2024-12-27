@@ -25,7 +25,6 @@ const Register = () => {
 
   const onSubmit = (data) => {
     const { email, password, photo, username } = data;
-    console.log(email, password, photo, username);
 
     const newUser = {
       Username: username,
@@ -40,11 +39,10 @@ const Register = () => {
           displayName: username,
           photoURL: photo,
         });
-        console.log(user);
 
         navigate(location?.state ? location.state : "/");
         //send data to server
-        fetch("http://localhost:5000/user", {
+        fetch("https://service-score-board-server.vercel.app/user", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -58,24 +56,17 @@ const Register = () => {
             }
           });
       })
-      .catch((error) => {
-        const errorMessage = error.message;
-        console.log(errorMessage);
-      });
+      .catch((err) => toast.error(`Error: ${err}`));
   };
 
   const signUpWithGoogle = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
         const user = result.user;
-        console.log(user);
         navigate(location?.state ? location.state : "/");
         notify();
       })
-      .catch((error) => {
-        const errorMessage = error.message;
-        console.log(errorMessage);
-      });
+      .catch((err) => toast.error(`Error: ${err}`));
   };
   return (
     <div>

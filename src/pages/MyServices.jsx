@@ -44,7 +44,6 @@ const MyServices = () => {
   };
 
   const handleDelete = (id) => {
-    console.log(id);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -56,7 +55,7 @@ const MyServices = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         //send data to server
-        fetch(`http://localhost:5000/service/${id}`, {
+        fetch(`https://service-score-board-server.vercel.app/service/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -84,21 +83,22 @@ const MyServices = () => {
   const handleUpdateClick = (service) => {
     setSelectedService(service);
     setIsModalOpen(true); // Open the modal
-    console.log(service);
   };
 
   const handleUpdateSubmit = (e) => {
     e.preventDefault();
-    console.log(selectedService);
 
     // Send updated data to the backend
-    fetch(`http://localhost:5000/service/${selectedService._id}`, {
-      method: "PUT", // or "PATCH" depending on your API
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(selectedService), // Send the updated service data
-    })
+    fetch(
+      `https://service-score-board-server.vercel.app/service/${selectedService._id}`,
+      {
+        method: "PUT", // or "PATCH" depending on your API
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(selectedService), // Send the updated service data
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
@@ -149,7 +149,7 @@ const MyServices = () => {
           <div className="overflow-x-auto">
             <Table.Root variant="outline" className="w-full">
               <Table.Header className="bg-gray-900 text-white">
-                <Table.Row>
+                <Table.Row className="text-white">
                   <Table.ColumnHeader className="p-3 text-left text-sm">
                     Service Title
                   </Table.ColumnHeader>

@@ -42,11 +42,10 @@ const TopReviews = () => {
     ],
   };
   useEffect(() => {
-    fetch("http://localhost:5000/review")
+    fetch("https://service-score-board-server.vercel.app/review")
       .then((res) => res.json())
       .then((data) => setReviews(data))
       .catch((error) => console.error("Error fetching review:", error));
-    console.log(reviews);
   }, []);
 
   const topReviews = reviews.filter((review) => review.rating >= 3);

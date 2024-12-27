@@ -34,7 +34,7 @@ const ServiceDetails = () => {
     resolver: zodResolver(formSchema),
   });
   useEffect(() => {
-    fetch(`http://localhost:5000/review`)
+    fetch(`https://service-score-board-server.vercel.app/review`)
       .then((response) => response.json())
       .then((data) => setReviews(data))
       .catch((error) => console.error("Error fetching reviews:", error));
@@ -70,18 +70,9 @@ const ServiceDetails = () => {
       userName,
       userPhoto,
     };
-    console.log(
-      "Form Data:",
-      data.rating,
-      data.review,
-      id,
-      userMail,
-      userName,
-      userPhoto
-    );
 
     //send data to server
-    fetch("http://localhost:5000/review", {
+    fetch("https://service-score-board-server.vercel.app/review", {
       method: "POST",
       headers: {
         "content-type": "application/json",

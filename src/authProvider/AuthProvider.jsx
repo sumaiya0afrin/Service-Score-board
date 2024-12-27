@@ -53,22 +53,22 @@ const AuthProvider = ({ children }) => {
         const user = { email: currentUser.email };
 
         axios
-          .post("http://localhost:5000/token", user, { withCredentials: true })
+          .post("https://service-score-board-server.vercel.app/token", user, {
+            withCredentials: true,
+          })
           .then((res) => {
-            console.log(res.data);
             setLoading(false);
           });
       } else {
         axios
           .post(
-            "http://localhost:5000/logout",
+            "https://service-score-board-server.vercel.app/logout",
             {},
             {
               withCredentials: true,
             }
           )
           .then((res) => {
-            console.log("logOut", res.data);
             setLoading(false);
           });
       }

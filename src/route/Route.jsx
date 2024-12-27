@@ -20,7 +20,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () => fetch("http://localhost:5000/feature-service"),
+        loader: () =>
+          fetch(
+            "https://service-score-board-server.vercel.app/feature-service"
+          ),
       },
       {
         path: "/register",
@@ -33,7 +36,8 @@ const router = createBrowserRouter([
       {
         path: "/services",
         element: <Services />,
-        loader: () => fetch("http://localhost:5000/service"),
+        loader: () =>
+          fetch("https://service-score-board-server.vercel.app/service"),
       },
       {
         path: "/my-service",
@@ -42,7 +46,8 @@ const router = createBrowserRouter([
             <MyServices />
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/service"),
+        loader: () =>
+          fetch("https://service-score-board-server.vercel.app/service"),
       },
       {
         path: "/add-Service",
@@ -59,7 +64,8 @@ const router = createBrowserRouter([
             <MyReview />
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/review"),
+        loader: () =>
+          fetch("https://service-score-board-server.vercel.app/review"),
       },
       {
         path: "/service-details/:id",
@@ -69,7 +75,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/service/${params.id}`),
+          fetch(
+            `https://service-score-board-server.vercel.app/service/${params.id}`
+          ),
       },
     ],
   },

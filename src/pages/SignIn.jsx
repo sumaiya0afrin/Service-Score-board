@@ -27,19 +27,17 @@ const SignIn = () => {
 
   const onSubmit = (data) => {
     const { email, password } = data;
-    console.log(email, password);
 
     SignIn(email, password)
       .then((result) => {
         const user = result.user;
         setUser(user);
-        console.log(user);
         navigate(location?.state ? location.state : "/");
         notify();
       })
       .catch((error) => {
         const errorMessage = error.message;
-        console.log(errorMessage);
+
         setError("Invalid credential");
       });
   };
@@ -49,13 +47,9 @@ const SignIn = () => {
       .then((result) => {
         const user = result.user;
         setUser(user);
-        console.log(user);
         navigate(location?.state ? location.state : "/");
       })
-      .catch((error) => {
-        const errorMessage = error.message;
-        console.log(errorMessage);
-      });
+      .catch((err) => toast.error(`Error: ${err}`));
   };
 
   return (

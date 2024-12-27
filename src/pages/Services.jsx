@@ -67,7 +67,7 @@ const Services = () => {
               key={service._id}
               maxW="sm"
               overflow="hidden"
-              className="bg-gray-900"
+              className="bg-gray-900 text-white"
             >
               <Image src={service.image} alt={service.title} />
               <Card.Body gap="2">

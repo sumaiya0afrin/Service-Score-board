@@ -14,18 +14,15 @@ const Feature = () => {
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-10">
         {services.map((service) => (
           <Card.Root
             key={service._id}
             maxW="sm"
             overflow="hidden"
-            className="bg-gray-900"
+            className="bg-gray-900 text-white"
           >
-            <Image
-              src={service.image}
-              alt="Green double couch with wooden legs"
-            />
+            <Image src={service.image} alt={service.title} />
             <Card.Body gap="2">
               <Card.Title>{service.title}</Card.Title>
               <Card.Description>{service.desc}</Card.Description>

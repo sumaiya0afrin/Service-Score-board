@@ -11,7 +11,7 @@ import { BiWebcam } from "react-icons/bi";
 import { IoHomeOutline } from "react-icons/io5";
 const Category = () => {
   return (
-    <div className="mb-28 px-4 lg:px-0">
+    <div className="pb-14 md:pb-20 lg:pb-24 px-4 lg:px-0">
       <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-8 text-center">
         <em>Explore Our Categories</em>
       </h2>

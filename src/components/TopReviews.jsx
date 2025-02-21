@@ -51,17 +51,17 @@ const TopReviews = () => {
   const topReviews = reviews.filter((review) => review.rating >= 3);
 
   return (
-    <div className="space-y-12 mt-12 md:mt-20">
+    <div className="space-y-12 pb-14 md:pb-20 lg:pb-24 px-4 lg:px-0">
       <div className=" space-y-3 max-w-screen-lg mx-auto">
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center lg:text-left">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center lg:text-left mb-2">
           <em>Top Reviews</em>
         </h2>
-        <p className="text-base md:text-lg text-center lg:text-left">
+        <p className="text-base md:text-lg text-center lg:text-left !mt-0">
           See what our customers are saying about their experiences
         </p>
       </div>
 
-      <Slider {...settings}>
+      <Slider {...settings} className="!mt-4">
         {topReviews.map((review, index) => (
           <div
             key={index}

@@ -3,9 +3,9 @@ import { Card, Image, Text } from "@chakra-ui/react";
 const Feature = () => {
   const services = useLoaderData();
   return (
-    <div className="max-w-screen-xl mx-auto my-12 px-4 lg:px-0">
+    <div className="max-w-screen-xl mx-auto pb-14 md:pb-20 lg:pb-24 px-4 lg:px-0">
       <div className="flex flex-col items-center ">
-        <h3 className="text-2xl md:text-3xl lg:text-4xl font-semibold">
+        <h3 className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-2">
           Featured Services
         </h3>
         <p className="text-center text-base md:text-lg">
@@ -14,7 +14,7 @@ const Feature = () => {
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-10">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
         {services.map((service) => (
           <Card.Root
             key={service._id}

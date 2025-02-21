@@ -36,7 +36,7 @@ const Counter = () => {
       .catch((error) => console.error("Error fetching service count:", error));
   }, []);
   return (
-    <div className="mt-12 md:mt-28 bg-gray-900 py-8">
+    <div className="mb-14 md:mb-20 lg:mb-24 bg-gray-900 py-8">
       <div className="grid grid-cols-2 md:grid-cols-3 justify-center items-center gap-4">
         <CountUp start={0} end={userCount} delay={0}>
           {({ countUpRef }) => (

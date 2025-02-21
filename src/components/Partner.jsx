@@ -11,18 +11,18 @@ const Partner = () => {
   }, []);
 
   return (
-    <div className="space-y-12 mt-12 md:mt-20">
+    <div className="space-y-12 pb-14 md:pb-20 lg:pb-24">
       <div className="flex flex-col items-center justify-center space-y-3">
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-2">
           <em>Our Trusted Partners</em>
         </h2>
-        <p className="text-base md:text-lg text-center">
+        <p className="text-base md:text-lg text-center !mt-0">
           Collaborating with innovators and industry leaders to bring you the
           best.
         </p>
       </div>
 
-      <Marquee className="space-x-3">
+      <Marquee className="space-x-3 !mt-8">
         <div className=" w-full">
           <div className="card max-w-7xl mx-auto">
             <div className="grid grid-cols-5 gap-3">

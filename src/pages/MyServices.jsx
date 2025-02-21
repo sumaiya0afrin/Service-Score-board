@@ -149,17 +149,17 @@ const MyServices = () => {
           <div className="overflow-x-auto">
             <Table.Root variant="outline" className="w-full">
               <Table.Header className="bg-gray-900 text-white">
-                <Table.Row className="text-white">
-                  <Table.ColumnHeader className="p-3 text-left text-sm">
+                <Table.Row>
+                  <Table.ColumnHeader className="p-3 text-left text-sm !text-white">
                     Service Title
                   </Table.ColumnHeader>
-                  <Table.ColumnHeader className="p-3 text-left text-sm">
+                  <Table.ColumnHeader className="p-3 text-left text-sm !text-white">
                     Category
                   </Table.ColumnHeader>
-                  <Table.ColumnHeader className="p-3 text-left text-sm">
+                  <Table.ColumnHeader className="p-3 text-left text-sm !text-white">
                     Added Date
                   </Table.ColumnHeader>
-                  <Table.ColumnHeader className="p-3 text-left text-sm">
+                  <Table.ColumnHeader className="p-3 text-left text-sm !text-white">
                     Action
                   </Table.ColumnHeader>
                 </Table.Row>
@@ -178,7 +178,7 @@ const MyServices = () => {
                         {formatDate(service.submissionDate)}
                       </Table.Cell>
                       <Table.Cell className="p-3">
-                        <div className="flex flex-col md:flex-row md:space-x-2">
+                        <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2">
                           <button
                             onClick={() => handleUpdateClick(service)}
                             className="btn bg-primaryColor text-white border-none hover:bg-gray-900 hover:text-white p-2 flex items-center justify-center"

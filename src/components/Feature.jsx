@@ -20,22 +20,26 @@ const Feature = () => {
             key={service._id}
             maxW="sm"
             overflow="hidden"
-            className="bg-gray-900 text-white"
+            className="bg-gray-900 text-white flex flex-col h-full"
           >
-            <Image src={service.image} alt={service.title} />
-            <Card.Body gap="2">
-              <Card.Title>{service.title}</Card.Title>
-              <Card.Description>{service.desc}</Card.Description>
+            <Image src={service.image} alt={service.title} className="w-full" />
+            <Card.Body className="flex flex-col flex-grow gap-2">
+              <Card.Title className="text-lg font-semibold">
+                {service.title}
+              </Card.Title>
+              <Card.Description className="text-gray-400 flex-grow">
+                {service.desc}
+              </Card.Description>
               <Text
                 textStyle="2xl"
                 fontWeight="medium"
                 letterSpacing="tight"
-                mt="2"
+                className="mt-auto"
               >
                 ${service.price}
               </Text>
             </Card.Body>
-            <Card.Footer gap="2">
+            <Card.Footer className="mt-auto">
               <Link
                 to={`/service-details/${service._id}`}
                 variant="solid"

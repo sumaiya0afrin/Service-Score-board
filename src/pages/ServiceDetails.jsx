@@ -1,6 +1,6 @@
 import { Badge, Box, Card, HStack, Image, Stack, Text } from "@chakra-ui/react";
 import { Button } from "@/components/ui/button";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { Textarea } from "@chakra-ui/react";
 import { Field } from "@/components/ui/field";
 
@@ -105,9 +105,37 @@ const ServiceDetails = () => {
             className="md:max-w-[200px]"
           />
           <Box>
-            <Card.Body>
-              <Card.Title mb="2">{service.title}</Card.Title>
-              <Card.Description>{service.desc}</Card.Description>
+            <Card.Body className="space-y-2">
+              <Card.Title color="white">{service.title}</Card.Title>
+              <Card.Description color="gray">{service.desc}</Card.Description>
+              <Text
+                fontWeight="medium"
+                letterSpacing="tight"
+                className="mt-auto"
+                color="gray"
+                marginTop="2"
+              >
+                ${service.price}
+              </Text>
+              <div className="grid md:grid-cols-2">
+                <Text
+                  textStyle="sm"
+                  letterSpacing="tight"
+                  className="mt-auto"
+                  color="gray"
+                >
+                  {service.company}
+                </Text>
+                <Text
+                  textStyle="sm"
+                  letterSpacing="tight"
+                  className="mt-auto"
+                  color="gray"
+                >
+                  Visit: <Link className="underline">{service.website}</Link>
+                </Text>
+              </div>
+
               <HStack mt="4">
                 <Badge>{service.category}</Badge>
               </HStack>
@@ -115,12 +143,13 @@ const ServiceDetails = () => {
           </Box>
         </Card.Root>
 
-        <Card.Root className=" bg-gray-900 justify-self-center max-w-2xl">
+        <Card.Root className=" bg-gray-900 justify-self-center max-w-2xl w-full">
           <Card.Body>
             <form onSubmit={handleSubmit(handleAddReview)}>
               <HStack gap="10" width="full" className="!flex-col md:!flex-row">
                 <Field
                   required
+                  color="white"
                   label="Rating"
                   invalid={!!errors.rating}
                   errorText={errors.rating?.message}
@@ -133,15 +162,16 @@ const ServiceDetails = () => {
                         name={field.name}
                         value={field.value}
                         onValueChange={({ value }) => field.onChange(value)}
+                        colorPalette="orange"
                       />
                     )}
                   />
                 </Field>
-                <Field label="Review" required>
+                <Field label="Review" required color="white">
                   <Textarea
                     placeholder="Start typing..."
                     variant="outline"
-                    className="border border-white p-2"
+                    className="border border-white p-2 !text-white"
                     {...register("review")}
                   />
                 </Field>
@@ -149,13 +179,15 @@ const ServiceDetails = () => {
               <Button
                 size="sm"
                 type="submit"
-                className="border border-dashed w-full mt-4"
+                className="border border-dashed w-full mt-4 !text-white"
               >
                 Submit
               </Button>
             </form>
 
-            <h2 className="mt-4">Total Reviews: {filteredReviews.length}</h2>
+            <h2 className="mt-4 !text-white">
+              Total Reviews: {filteredReviews.length}
+            </h2>
 
             {reviews.length > 0 ? (
               reviews
@@ -175,7 +207,7 @@ const ServiceDetails = () => {
                           <Text
                             fontWeight="semibold"
                             textStyle="sm"
-                            className="capitalize"
+                            className="capitalize !text-white"
                           >
                             {review.userName}
                           </Text>
@@ -190,7 +222,9 @@ const ServiceDetails = () => {
                           </Text>
                         </Stack>
                       </HStack>
-                      <Card.Description>{review.review}</Card.Description>
+                      <Card.Description color="gray">
+                        {review.review}
+                      </Card.Description>
                     </Card.Body>
                   </Card.Root>
                 ))

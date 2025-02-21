@@ -122,10 +122,10 @@ const MyReview = () => {
   return (
     <div>
       <div className="max-w-screen-xl mx-auto mt-12 px-4 md:px-0">
-        <h3 className="text-2xl md:text-3xl text-primaryColor font-semibold text-center">
+        <h3 className="text-2xl md:text-3xl text-primaryColor font-semibold text-center mb-8">
           My Reviews
         </h3>
-        <Card.Root className="bg-gray-900 justify-self-center max-w-2xl">
+        <Card.Root className="bg-gray-900 justify-self-center max-w-2xl w-full">
           <Card.Body>
             {userReviews.length > 0 ? (
               userReviews.map((review) => (
@@ -152,7 +152,9 @@ const MyReview = () => {
                         />
                       </Stack>
                     </HStack>
-                    <Card.Description>{review.review}</Card.Description>
+                    <Card.Description color="gray">
+                      {review.review}
+                    </Card.Description>
                     <div className="flex flex-col md:flex-row md:space-x-2 justify-end mt-4 space-y-3 md:space-y-0">
                       <button
                         onClick={() => handleUpdateClick(review)}
@@ -174,7 +176,7 @@ const MyReview = () => {
                 </Card.Root>
               ))
             ) : (
-              <Text>No reviews yet.</Text>
+              <Text color="white">No reviews yet.</Text>
             )}
           </Card.Body>
         </Card.Root>

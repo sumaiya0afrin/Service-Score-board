@@ -13,6 +13,17 @@ import { Avatar } from "@/components/ui/avatar";
 import { HStack } from "@chakra-ui/react";
 import { GrServices } from "react-icons/gr";
 
+import {
+  DrawerBackdrop,
+  DrawerBody,
+  DrawerCloseTrigger,
+  DrawerContent,
+  DrawerHeader,
+  DrawerRoot,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
+
 const Navbar = () => {
   const location = useLocation();
   const { user, logOut } = useContext(AuthContext);
@@ -72,91 +83,119 @@ const Navbar = () => {
         location.pathname === "/" ? "absolute" : "none"
       }  top-0 left-0 w-full z-50`}
     >
-      <div className="max-w-screen-xl mx-auto relative flex items-center">
+      <div className="max-w-screen-xl mx-auto relative flex items-center px-4 lg:px-0">
         <div className="navbar py-4 bg-[#00796B] rounded-lg text-white mt-6">
           <div className="navbar-start w-auto lg:w-1/2">
             <div className="dropdown">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost lg:hidden"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h8m-8 6h16"
-                  />
-                </svg>
-              </div>
-              <ul
-                tabIndex={0}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow text-primaryColor"
-              >
-                {links}
-                {user && user?.email ? (
-                  <div className="navbar-end">
-                    <ul className="menu menu-horizontal">
-                      <li>
-                        <Link to="/my-ervice">
-                          <GrServices />
-                          My Services
-                        </Link>
-                      </li>
-                    </ul>
-
-                    <HStack gap="3">
-                      <Avatar
-                        size="md"
-                        name="Sage"
-                        src={user && user?.photoURL ? user.photoURL : ""}
+              <DrawerRoot>
+                <DrawerBackdrop />
+                <DrawerTrigger asChild>
+                  <div
+                    tabIndex={0}
+                    role="button"
+                    className="btn btn-ghost lg:hidden pl-0"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="currentColor"
+                      className="size-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
                       />
-                    </HStack>
-                    <button
-                      onClick={logOut}
-                      className="btn bg-primaryColor border-none join-item hover:bg-gray-900 hover:text-white"
-                    >
-                      <RiLogoutCircleLine className="text-2xl" />
-                      LogOut
-                    </button>
+                    </svg>
                   </div>
-                ) : (
-                  <div className="navbar-end">
-                    <Link
-                      to="/signIn"
-                      className="btn bg-primaryColor border-none join-item hover:bg-gray-900 hover:text-white"
+                </DrawerTrigger>
+                <DrawerContent>
+                  <DrawerHeader>
+                    <DrawerTitle>
+                      {" "}
+                      <Link
+                        to="/"
+                        className="navbar-center space-x-2 flex items-center"
+                      >
+                        <img src={logo} alt="" className="w-16" />
+                        <h2 className="text-xl md::text-2xl">
+                          Service <br />
+                          ScoreBoard
+                        </h2>
+                      </Link>
+                    </DrawerTitle>
+                  </DrawerHeader>
+                  <DrawerBody>
+                    <ul
+                      tabIndex={0}
+                      className="menu dropdown-content  text-primaryColor"
                     >
-                      <RiLoginCircleLine className="text-2xl" />
-                      Login
-                    </Link>
-                    <Link
-                      to="/register"
-                      className="btn bg-primaryColor border-none join-item hover:bg-gray-900 hover:text-white"
-                    >
-                      Register
-                    </Link>
-                  </div>
-                )}
-              </ul>
+                      {links}
+                      {user && user?.email ? (
+                        <ul className="menu p-0">
+                          <li>
+                            <Link to="/my-service">
+                              <GrServices />
+                              My Services
+                            </Link>
+                          </li>
+
+                          <li>
+                            <button
+                              onClick={logOut}
+                              className="btn bg-primaryColor border-none join-item hover:bg-gray-900 hover:text-white mt-2 mx-4 w-fit"
+                            >
+                              <RiLogoutCircleLine className="text-2xl" />
+                              LogOut
+                            </button>
+                          </li>
+                        </ul>
+                      ) : (
+                        <div className="navbar-end">
+                          <Link
+                            to="/signIn"
+                            className="btn bg-primaryColor border-none join-item hover:bg-gray-900 hover:text-white"
+                          >
+                            <RiLoginCircleLine className="text-2xl" />
+                            Login
+                          </Link>
+                          <Link
+                            to="/register"
+                            className="btn bg-primaryColor border-none join-item hover:bg-gray-900 hover:text-white"
+                          >
+                            Register
+                          </Link>
+                        </div>
+                      )}
+                    </ul>
+                  </DrawerBody>
+
+                  <DrawerCloseTrigger />
+                </DrawerContent>
+              </DrawerRoot>
             </div>
             <ul className="menu menu-horizontal px-1 hidden lg:flex">
               {links}
             </ul>
           </div>
           <Link to="/" className="navbar-center space-x-2">
-            <img src={logo} alt="" className="w-16" />
-            <h2 className="text-xl md::text-2xl">
+            <img src={logo} alt="" className="w-12 md:w-16" />
+            <h2 className="text-lg md:text-2xl">
               Service <br />
               ScoreBoard
             </h2>
           </Link>
+
+          <HStack gap="3" className="navbar-end block flex-grow lg:!hidden">
+            <Avatar
+              size="md"
+              name="Sage"
+              src={user && user?.photoURL ? user.photoURL : ""}
+            />
+          </HStack>
+
           {user && user?.email ? (
             <div className="navbar-end space-x-4 hidden lg:flex">
               <ul className="menu menu-horizontal px-1 hidden lg:flex">

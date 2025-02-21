@@ -52,7 +52,7 @@ const TopReviews = () => {
 
   return (
     <div className="space-y-12 pb-14 md:pb-20 lg:pb-24 px-4 lg:px-0">
-      <div className=" space-y-3 max-w-screen-lg mx-auto">
+      <div className=" space-y-3 lg:max-w-screen-lg lg:mx-auto">
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center lg:text-left mb-2">
           <em>Top Reviews</em>
         </h2>
@@ -61,7 +61,7 @@ const TopReviews = () => {
         </p>
       </div>
 
-      <Slider {...settings} className="!mt-4">
+      <Slider {...settings} className="!mt-4 w-full overflow-hidden">
         {topReviews.map((review, index) => (
           <div
             key={index}
@@ -69,10 +69,10 @@ const TopReviews = () => {
               index === centerIndex
                 ? "scale-105 opacity-100 z-10"
                 : "scale-90 opacity-60 z-0"
-            } flex items-center justify-center px-4`}
+            } flex items-center justify-center w-full`}
           >
             <div
-              className="bg-gray-900 p-6 rounded-lg shadow-lg max-w-md mx-auto flex flex-col justify-between"
+              className="bg-gray-900 p-6 rounded-lg shadow-lg w-full max-w-md mx-auto flex flex-col justify-between"
               style={{ height: "250px" }} // Fixed height for all cards
             >
               <div className="flex items-center mb-4">

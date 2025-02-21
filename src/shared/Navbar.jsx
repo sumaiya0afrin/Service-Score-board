@@ -153,17 +153,17 @@ const Navbar = () => {
                           </li>
                         </ul>
                       ) : (
-                        <div className="navbar-end">
+                        <div className="join">
                           <Link
                             to="/signIn"
-                            className="btn bg-primaryColor border-none join-item hover:bg-gray-900 hover:text-white"
+                            className="btn bg-primaryColor border-none join-item hover:bg-gray-900 hover:text-white mt-2 ml-4 w-fit"
                           >
                             <RiLoginCircleLine className="text-2xl" />
                             Login
                           </Link>
                           <Link
                             to="/register"
-                            className="btn bg-primaryColor border-none join-item hover:bg-gray-900 hover:text-white"
+                            className="btn bg-primaryColor border-none join-item hover:bg-gray-900 hover:text-white mt-2 w-fit"
                           >
                             Register
                           </Link>
@@ -188,13 +188,17 @@ const Navbar = () => {
             </h2>
           </Link>
 
-          <HStack gap="3" className="navbar-end block flex-grow lg:!hidden">
-            <Avatar
-              size="md"
-              name="Sage"
-              src={user && user?.photoURL ? user.photoURL : ""}
-            />
-          </HStack>
+          {user && user?.email ? (
+            <HStack gap="3" className="navbar-end block flex-grow lg:!hidden">
+              <Avatar
+                size="md"
+                name="Sage"
+                src={user && user?.photoURL ? user.photoURL : ""}
+              />
+            </HStack>
+          ) : (
+            <></>
+          )}
 
           {user && user?.email ? (
             <div className="navbar-end space-x-4 hidden lg:flex">
